@@ -3,139 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morph Icons Demo | EnsuiviDev</title>
-    <script src="morph-icons.js"></script>
-    
+    <title>Morph Icon · duotone web component demo</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --accent-primary: #38bdf8;
+        * {
+            box-sizing: border-box;
         }
-
         body {
+            background: linear-gradient(145deg, #f7f9fc 0%, #eef2f7 100%);
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        p { color: #94a3b8; margin-bottom: 3rem; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1000px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.2s ease;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1.5rem;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.1);
-        }
-
-        .label {
-            margin-top: 1rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #64748b;
-        }
-
-        /* Preset Styles */
-        .blue-theme { --hover-color: #38bdf8; --base-color: #475569; }
-        .rose-theme { --hover-color: #fb7185; --base-color: #475569; }
-        .amber-theme { --hover-color: #fbbf24; --base-color: #475569; }
-        .emerald-theme { --hover-color: #34d399; --base-color: #475569; }
-
-        /* Shopify Style Section */
-        .shopify-preview {
-            margin-top: 5rem;
-            background: #ffffff;
-            color: #202223;
-            padding: 3rem;
-            border-radius: 1rem;
+        .demo-container {
+            max-width: 1200px;
             width: 100%;
-            max-width: 1000px;
-            text-align: center;
         }
-
-        .shopify-preview h2 { margin-bottom: 2rem; }
-
-        .shopify-icons {
+        h1 {
+            font-weight: 500;
+            font-size: 2.2rem;
+            letter-spacing: -0.01em;
+            color: #1a2639;
+            margin: 0 0 0.25rem 0;
             display: flex;
-            justify-content: space-around;
-            --base-color: #5c5f62;
-            --hover-color: #008060; /* Shopify Green */
+            align-items: center;
+            gap: 12px;
+        }
+        h1 .material-symbols-outlined {
+            font-size: 2.6rem;
+            color: #2d3b5a;
+        }
+        .subhead {
+            color: #3e4e6b;
+            font-size: 1.05rem;
+            margin-bottom: 2.25rem;
+            border-left: 4px solid #607d8b;
+            padding-left: 1.2rem;
+            background: rgba(96, 125, 139, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 2rem 1.2rem;
+            margin: 3rem 0 2rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            background: #ffffffdd;
+            border: 1px solid #ffffff;
+            border-radius: 36px;
+            padding: 1.8rem 1rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 40px -14px rgba(0,20,40,0.25),
+                        0 0 0 1px rgba(156, 180, 204, 0.2) inset;
+            transition: 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 30px 50px -18px #1a3144, 0 0 0 1px #b6ccda inset;
+            background: #ffffff;
+        }
+        .card p {
+            margin: 0.8rem 0 0;
+            font-weight: 450;
+            color: #1e2f40;
+            background: #eef2f6c0;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(2px);
+            border: 1px solid #d9e2ec;
+        }
+        .control-panel {
+            background: #ffffffcc;
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 1.6rem 2.2rem;
+            margin: 2rem 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 3rem;
+            align-items: flex-start;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 15px 30px -20px #0f1f2e;
+        }
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 160px;
+        }
+        .control-item label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #365073;
+            opacity: 0.8;
+        }
+        select, input[type="color"] {
+            background: white;
+            border: 1px solid #bdcbd9;
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            outline: none;
+            transition: 0.15s;
+        }
+        select:hover, input[type="color"]:hover {
+            border-color: #4c6a86;
+        }
+        .preview-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem 4rem;
+            background: #dae5ef30;
+            border-radius: 80px;
+            padding: 1rem 2.8rem;
+            margin-top: 2rem;
+        }
+        .preview-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .badge {
+            background: #182c42;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 60px;
+            margin-top: 0.2rem;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #a1bbd0, transparent);
+            margin: 2.8rem 0 1rem;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #3d5670;
+            text-align: center;
+            background: #dce7f1;
+            padding: 0.6rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin: 1rem auto 0;
+        }
+        .fill-example {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #556f88;
+        }
+        /* override morph-icon inline style sometimes for demo */
+        morph-icon {
+            transition: all 0.2s;
         }
     </style>
+    <!-- load base material icons (fallback) but morph-icon loads its own fonts dynamically -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- we preload both families for faster switching (optional) -->
 </head>
 <body>
+<div class="demo-container">
+    <h1>
+        <span class="material-symbols-outlined">morph</span>
+        &lt;morph-icon&gt; · duotone morph lab
+    </h1>
+    <div class="subhead">hover any icon — fill morphs, weight shifts, duotone reacts to hover color</div>
 
-    <h1>morph-icons</h1>
-    <p>Hover over the icons to see the dynamic duotone morphing effect.</p>
-
+    <!-- icon grid with different settings (attributes & css variables) -->
     <div class="grid">
-        <div class="card blue-theme">
-            <morph-icon name="rocket_launch" size="80px"></morph-icon>
-            <div class="label">Rocket (Rounded)</div>
+        <!-- default: rounded, size from CSS var (96px) but name set via attribute -->
+        <div class="card">
+            <morph-icon name="favorite" style="--hover-color:#c73b4b;"></morph-icon>
+            <p>favorite (default rounded)</p>
         </div>
-
-        <div class="card rose-theme">
-            <morph-icon name="favorite" shape="sharp" size="80px"></morph-icon>
-            <div class="label">Heart (Sharp)</div>
+        <!-- sharp shape via attribute, custom size, fill derived from hover -->
+        <div class="card">
+            <morph-icon name="star" shape="sharp" size="80px" style="--hover-color:#e5a022;"></morph-icon>
+            <p>star · sharp 80px</p>
         </div>
-
-        <div class="card amber-theme">
-            <morph-icon name="bolt" style="--hover-duration: 0.6s" size="80px"></morph-icon>
-            <div class="label">Slow Morph</div>
+        <!-- rounded (explicit) big size, different hover/duotone -->
+        <div class="card">
+            <morph-icon name="bolt" shape="rounded" style="--hover-color:#006e8f; --size:110px;"></morph-icon>
+            <p>bolt · teal duotone</p>
         </div>
-
-        <div class="card emerald-theme">
-            <morph-icon name="verified" size="80px"></morph-icon>
-            <div class="label">Verified</div>
+        <!-- using css variable for shape, manual fill-color (bypass auto) -->
+        <div class="card">
+            <morph-icon name="palette" style="--shape:sharp; --fill-color:#c5936b; --hover-color:#a13d2f; --size:84px;"></morph-icon>
+            <p>palette · fixed fill</p>
+        </div>
+        <!-- dark hover -> auto bright fill (see brightness logic) -->
+        <div class="card">
+            <morph-icon name="dark_mode" style="--hover-color:#0b1f33;"></morph-icon>
+            <p>dark_mode (deep blue)</p>
+        </div>
+        <!-- light hover -> darker fill -->
+        <div class="card">
+            <morph-icon name="light_mode" style="--hover-color:#ffe8c5;"></morph-icon>
+            <p>light_mode · soft fill</p>
+        </div>
+        <!-- shape from attribute = sharp, plus animation via css variable -->
+        <div class="card">
+            <morph-icon name="pets" shape="sharp" style="--animation: wiggle 2s infinite; --hover-color:#5f4a6b;"></morph-icon>
+            <p>pets + wiggle keyframe</p>
+        </div>
+        <!-- fill-color unset -> dynamic based on hover (mid brightness) -->
+        <div class="card">
+            <morph-icon name="eco" style="--hover-color:#2f7352;"></morph-icon>
+            <p>eco · forest</p>
         </div>
     </div>
 
-    <div class="shopify-preview">
-        <h2>Shopify Theme Implementation</h2>
-        <div class="shopify-icons">
-            <div>
-                <morph-icon name="shopping_cart" size="48px"></morph-icon>
-                <div class="label">Cart</div>
-            </div>
-            <div>
-                <morph-icon name="search" size="48px"></morph-icon>
-                <div class="label">Search</div>
-            </div>
-            <div>
-                <morph-icon name="account_circle" size="48px"></morph-icon>
-                <div class="label">Account</div>
-            </div>
+    <!-- interactive playground – change attributes & see updates -->
+    <div class="control-panel">
+        <div class="control-item">
+            <label>🎨 icon name</label>
+            <select id="iconNameSelect">
+                <option value="favorite" selected>favorite</option>
+                <option value="star">star</option>
+                <option value="bolt">bolt</option>
+                <option value="settings">settings</option>
+                <option value="explore">explore</option>
+                <option value="cruelty_free">cruelty_free</option>
+                <option value="neurology">neurology</option>
+                <option value="globe">globe</option>
+                <option value="rocket_launch">rocket_launch</option>
+                <option value="genres">genres</option>
+            </select>
+        </div>
+        <div class="control-item">
+            <label>🔷 shape</label>
+            <select id="shapeSelect">
+                <option value="rounded" selected>rounded</option>
+                <option value="sharp">sharp</option>
+            </select>
+        </div>
+        <div class="control-item">
+            <label>📏 size (CSS var / attr)</label>
+            <select id="sizeSelect">
+                <option value="96px">96px (default)</option>
+                <option value="64px">64px</option>
+                <option value="128px">128px</option>
+                <option value="48px">48px</option>
+                <option value="112px">112px</option>
+            </select>
+        </div>
+        <div class="control-item">
+            <label>🎯 hover color</label>
+            <input type="color" id="hoverColorPicker" value="#223c74">
         </div>
     </div>
 
-    <footer style="margin-top: 4rem; opacity: 0.5; font-size: 0.8rem;">
-        Developed by EnsuiviDev &copy; 2026
+    <!-- live demo morph-icon that reacts to controls -->
+    <div class="preview-row">
+        <div class="preview-item">
+            <morph-icon id="liveMorphIcon" name="favorite" shape="rounded" size="96px" style="--hover-color:#223c74;"></morph-icon>
+            <span class="badge">live preview</span>
+        </div>
+        <div class="preview-item" style="margin-left: 10px;">
+            <morph-icon name="thumb_up" style="--hover-color:#7b4a8b; --size:80px;"></morph-icon>
+            <span>thumb_up · fixed style</span>
+        </div>
+    </div>
+
+    <!-- additional examples: explicit fill-color usage and animation -->
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-around;">
+        <div>
+            <morph-icon name="globe" style="--fill-color:#ccaa88; --hover-color:#395c7a; --size:110px;"></morph-icon>
+            <div style="text-align:center;">globe · manual fill</div>
+        </div>
+        <div>
+            <morph-icon name="neurology" shape="sharp" style="--animation: pulse 2s infinite; --hover-color:#602050;"></morph-icon>
+            <div style="text-align:center;">neurology · pulse</div>
+        </div>
+        <div>
+            <morph-icon name="cruelty_free" style="--hover-color:#d46054; --size:76px;"></morph-icon>
+            <div>cruelty_free · auto fill</div>
+        </div>
+    </div>
+
+    <div class="note">
+        ⚡ duotone fill is derived from hover color (unless --fill-color is set).<br>
+        Hover any icon: weight & secondary fill morph.
+    </div>
+    <footer>
+        <morph-icon name="cognition" size="28px" style="--hover-color:#284a6e; margin-right: 8px;"></morph-icon>
+        morph-icon web component · dynamic font loading · brightness‑adaptive duotone
     </footer>
+</div>
 
+<!-- morph-icon class definition (copy from provided code) -->
+<script>
+    class MorphIcon extends HTMLElement {
+        static get observedAttributes() {
+            return ['name', 'shape', 'size'];
+        }
+
+        constructor() {
+            super();
+            this.attachShadow({ mode: 'open' });
+            this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              --hover-color: #000000;
+              --base-color: #000000;
+              --fill-color: unset;
+              --hover-duration: 0.3s;
+              --animation: none;
+              --size: 96px;
+              --shape: rounded;
+              display: inline-block;
+            }
+            .icon {
+              position: relative;
+              font-family: 'Material Symbols Rounded';
+              font-size: var(--size);
+              cursor: pointer;
+              user-select: none;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--base-color);
+              font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+              transition: color var(--hover-duration) ease, font-variation-settings var(--hover-duration) ease, transform 0.3s ease;
+              animation: var(--animation);
+            }
+            .icon::after {
+              content: attr(data-icon);
+              position: absolute;
+              color: var(--fill-color);
+              font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' -25, 'opsz' 48;
+              z-index: -1;
+              clip-path: circle(0% at 50% 50%);
+              transform: scale(0.5);
+              transition: clip-path var(--hover-duration) ease, transform var(--hover-duration) ease;
+            }
+            .icon:hover {
+              color: var(--hover-color);
+              font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+            }
+            .icon:hover::after {
+              clip-path: circle(75% at 50% 50%);
+              transform: scale(1.05);
+            }
+          </style>
+          <span class="icon" data-icon=""></span>
+        `;
+        }
+
+        connectedCallback() {
+            this.updateIcon();
+        }
+
+        attributeChangedCallback() {
+            this.updateIcon();
+        }
+
+        updateIcon() {
+            const iconEl = this.shadowRoot.querySelector('.icon');
+            const name = this.getAttribute('name') || '';
+            iconEl.textContent = name;
+            iconEl.setAttribute('data-icon', name);
+
+            // Duotone logic
+            const computedStyle = getComputedStyle(this);
+            const hoverColor = computedStyle.getPropertyValue('--hover-color').trim() || '#223c74';
+            let manualFill = computedStyle.getPropertyValue('--fill-color').trim();
+
+            if (!manualFill || manualFill === 'unset') {
+                const rgb = this.hexToRgb(hoverColor);
+                const brightness = this.getBrightness(rgb);
+                let secondaryRgb;
+                if (brightness < 0.25) secondaryRgb = this.adjustColor(rgb, 0.6);
+                else if (brightness < 0.5) secondaryRgb = this.adjustColor(rgb, 0.3);
+                else if (brightness < 0.75) secondaryRgb = this.adjustColor(rgb, -0.2);
+                else secondaryRgb = this.adjustColor(rgb, -0.5);
+                const fillColor = this.rgbToHex(secondaryRgb.r, secondaryRgb.g, secondaryRgb.b);
+                this.style.setProperty('--fill-color', fillColor);
+            }
+
+            // Shape logic (attribute > CSS variable > default)
+            const shape = this.getAttribute('shape') || computedStyle.getPropertyValue('--shape').trim() || 'rounded';
+            const fontId = 'morph-icon-font-' + shape;
+            if (!document.getElementById(fontId)) {
+                const link = document.createElement('link');
+                link.id = fontId;
+                link.rel = 'stylesheet';
+                link.href = shape === 'sharp'
+                    ? 'https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'
+                    : 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+                document.head.appendChild(link);
+            }
+            iconEl.style.fontFamily = shape === 'sharp' ? "'Material Symbols Sharp'" : "'Material Symbols Rounded'";
+
+            // Size logic (attribute > CSS variable > default)
+            const size = this.getAttribute('size') || computedStyle.getPropertyValue('--size').trim() || '96px';
+            iconEl.style.fontSize = size;
+        }
+
+        hexToRgb(hex) {
+            let r = parseInt(hex.substr(1, 2), 16);
+            let g = parseInt(hex.substr(3, 2), 16);
+            let b = parseInt(hex.substr(5, 2), 16);
+            return { r, g, b };
+        }
+
+        rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+        }
+
+        adjustColor({ r, g, b }, percent) {
+            r = Math.min(255, Math.max(0, Math.floor(r + percent * 255)));
+            g = Math.min(255, Math.max(0, Math.floor(g + percent * 255)));
+            b = Math.min(255, Math.max(0, Math.floor(b + percent * 255)));
+            return { r, g, b };
+        }
+
+        getBrightness({ r, g, b }) {
+            return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        }
+    }
+
+    customElements.define('morph-icon', MorphIcon);
+
+    // extra keyframe animations for demo
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+        @keyframes wiggle {
+            0%,100% { transform: rotate(0deg); }
+            25% { transform: rotate(8deg); }
+            75% { transform: rotate(-6deg); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+</script>
+
+<script>
+    // connect live controls to morph-icon instance
+    (function() {
+        const liveIcon = document.getElementById('liveMorphIcon');
+        const nameSelect = document.getElementById('iconNameSelect');
+        const shapeSelect = document.getElementById('shapeSelect');
+        const sizeSelect = document.getElementById('sizeSelect');
+        const colorPicker = document.getElementById('hoverColorPicker');
+
+        if (liveIcon && nameSelect) {
+            // initial sync
+            nameSelect.addEventListener('change', (e) => {
+                liveIcon.setAttribute('name', e.target.value);
+            });
+            shapeSelect.addEventListener('change', (e) => {
+                liveIcon.setAttribute('shape', e.target.value);
+            });
+            sizeSelect.addEventListener('change', (e) => {
+                liveIcon.setAttribute('size', e.target.value);
+            });
+            colorPicker.addEventListener('input', (e) => {
+                liveIcon.style.setProperty('--hover-color', e.target.value);
+                // force update so duotone fill recalculates (updateIcon reads hover)
+                // small trick: we can re-set attribute to trigger updateIcon
+                const currentName = liveIcon.getAttribute('name');
+                liveIcon.setAttribute('name', currentName); // triggers attributeChanged
+            });
+            // ensure any pre-existing values
+        }
+    })();
+</script>
+
+<!-- also include a couple material outlines for header only (optional) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </body>
 </html>
