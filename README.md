@@ -1,88 +1,37 @@
 # 💠 morph-icons
 
-A lightweight, high-performance **Web Component** for creating dynamic, "morphing" duotone Material Symbols. Built with vanilla JavaScript and CSS `clip-path`, it automatically generates adaptive secondary colors for a modern, fluid UI experience.
+**morph-icons** is a high-performance, framework-agnostic Web Component designed to bring Google Material Symbols to life. It transforms static icons into dynamic, interactive UI elements using a sophisticated "morphing" duotone effect that adapts to your design system automatically.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-* **Zero Dependencies:** Pure vanilla JavaScript Web Component.
-* **Smart Duotone Logic:** Automatically calculates a contrasting fill color based on your primary hover color.
-* **Morphing Animation:** Smoothly transitions from an outlined state to a scaled, filled state.
-* **Framework Agnostic:** Works perfectly in Shopify Liquid, React, Vue, or standard HTML.
-* **Highly Customizable:** Control icons, shapes, and sizes via attributes or CSS variables.
+* **Adaptive Duotone Engine:** Automatically calculates and applies a perfectly contrasted secondary fill color based on your primary hover theme.
+* **Fluid Morphing Animation:** Seamlessly transitions from a minimal outline to a scaled, filled state using hardware-accelerated transitions.
+* **Plug-and-Play:** Zero dependencies. Simply import the script and use the custom HTML tag anywhere in your project—from Shopify Liquid to React.
+* **Style Versatility:** Full support for both **Rounded** and **Sharp** Material Symbol variants.
+* **Full Customization:** Control every aspect of the icon—size, colors, and animation speed—using standard HTML attributes or CSS variables.
 
 ---
 
-## 🚀 Quick Start
+## 🛠 Usage Guide
 
-### 1. Installation
-Include the script in your project:
+### 1. Integration
+Add the library to your project by including the JavaScript file:
 ```html
 <script src="morph-icons.js"></script>
+2. ImplementationUse the <morph-icon> tag with the name of any Google Material Symbol.HTML<morph-icon name="home"></morph-icon>
 
-```
+<morph-icon name="dashboard" shape="sharp"></morph-icon>
 
-### 2. Basic Usage
+<morph-icon name="rocket_launch" size="64px"></morph-icon>
+⚙️ Full API Reference1. HTML AttributesAttributes allow you to configure the icon directly in your markup. These values override global CSS defaults.AttributeTypeDefaultDescriptionnameString""Required. The specific Material Symbol name (e.g., settings, favorite).shapeStringroundedDefines the font-family style. Options: rounded or sharp.sizeString96pxSets the width and height. Accepts any CSS unit (e.g., 40px, 2rem).2. CSS Custom Properties (Variables)Use these variables in your stylesheet for global branding or specific component overrides.VariableDefaultDescription--base-color#000000The color of the icon in its default (outlined) state.--hover-color#000000The primary color applied when the user hovers.--fill-colorunsetThe secondary duotone color. Calculated automatically if left unset.--size96pxThe font-size/dimensions of the icon.--hover-duration0.3sThe speed of the transition for weight and morphing.--animationnoneAttach custom CSS keyframe animations to the container.🧠 Smart Color EngineThe component features an automated logic gate for the duotone effect. When --fill-color is not manually defined, it calculates the Perceptual Brightness of your --hover-color to ensure accessibility:Dark Themes: Automatically lightens the fill for visibility.Light Themes: Automatically darkens the fill for depth.🚀 JavaScript IntegrationSince it is a standard Web Component, you can interact with it using vanilla JS. The component uses observedAttributes, so updates are reflected instantly without a refresh.JavaScriptconst myIcon = document.querySelector('morph-icon');
 
-Simply use the `<morph-icon>` tag with the name of any [Google Material Symbol](https://fonts.google.com/icons).
+// Change icon on the fly
+myIcon.setAttribute('name', 'verified');
 
-```html
-<morph-icon name="favorite"></morph-icon>
+// Switch style
+myIcon.setAttribute('shape', 'sharp');
+📄 LicenseThis library is released under the MIT License.Third-Party Attribution:This project utilizes Material Symbols by Google, provided under the Apache License, Version 2.0.
 
-<morph-icon name="settings" shape="sharp"></morph-icon>
-
-<morph-icon name="bolt" size="48px"></morph-icon>
-
-```
-
----
-
-## 🎨 Customization
-
-### CSS Variables
-
-You can style the component globally or individually using CSS variables:
-
-```css
-morph-icon {
-  --base-color: #636e72;   /* Initial outline color */
-  --hover-color: #0984e3;  /* Main color on hover */
-  --size: 80px;            /* Icon size */
-  --hover-duration: 0.4s;  /* Animation speed */
-}
-
-```
-
-### Attributes Reference
-
-| Attribute | Description | Default | Options |
-| --- | --- | --- | --- |
-| `name` | The Material Symbol icon name | `''` | Any Material Symbol name |
-| `shape` | The font style to load | `rounded` | `rounded`, `sharp` |
-| `size` | The font-size of the icon | `96px` | Any CSS unit (px, rem, etc.) |
-
----
-
-## 🧠 How It Works
-
-The library features a built-in color engine that analyzes the brightness of your `--hover-color`. It then automatically generates a secondary shade (lightening dark colors or darkening light colors) to create a perfect duotone effect without manual configuration.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
-### Third-Party Assets
-
-This library utilizes **Material Symbols** by Google, which are licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).
-
----
-
-Developed by **[EnsuiviDev](https://www.google.com/search?q=https://github.com/EnsuiviDev)**
-
-
-Would you like me to also provide the **MIT License** text to include as a separate `LICENSE` file in your repository?
-
-```
+Developed by EnsuiviDev
