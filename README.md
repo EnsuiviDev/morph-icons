@@ -1,4 +1,4 @@
-# 💠 morph-icons *(Beta Build)*
+# 💠 morph-icons **(BETA)**
 
 **morph-icons** is a high-performance, framework-agnostic Web Component designed to bring Google Material Symbols to life. It transforms static icons into dynamic, interactive UI elements using a sophisticated "morphing" duotone effect that adapts to your design system automatically.
 
