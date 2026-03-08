@@ -2,6 +2,19 @@
 
 **morph-icons** is a high-performance, framework-agnostic Web Component designed to bring Google Material Symbols to life. It transforms static icons into dynamic, interactive UI elements using a sophisticated "morphing" duotone effect that adapts to your design system automatically.
 
+## Live Demo
+
+Check out the interactive Morph Icon web component in action:
+
+[**View Morph Icon Demo**](demo.html)
+
+The demo showcases:
+- Interactive duotone morphing effect on hover
+- Live controls for icon name, shape, size, and hover color
+- Automatic fill color generation based on hover color brightness
+- Support for both rounded and sharp Material Symbols
+- CSS animation integration
+
 ---
 
 ## ✨ Key Features
